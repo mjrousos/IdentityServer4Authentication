@@ -1,6 +1,4 @@
 ﻿{
-  "userSecretsId": "aspnet-IdentityServer4Authentication-bb03c859-f6b4-4e13-bec3-9341d02f1380",
-
   "dependencies": {
     "Microsoft.NETCore.App": {
       "version": "1.0.1",
@@ -28,9 +26,7 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0",
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
-    "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0",
     "Microsoft.Extensions.Logging": "1.0.0",
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
