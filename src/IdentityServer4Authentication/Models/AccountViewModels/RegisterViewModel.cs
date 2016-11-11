@@ -23,5 +23,15 @@ namespace IdentityServer4Authentication.Models.AccountViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Is administrator")]
+        public bool IsAdministrator { get; set; }
+
+        [Display(Name = "Is manager")]
+        public bool IsManager { get; set; }
+
+        [Required]
+        [Display(Name = "Office Number")]
+        public int OfficeNumber { get; set; }
     }
 }
