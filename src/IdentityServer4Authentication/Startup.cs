@@ -46,6 +46,9 @@ namespace IdentityServer4Authentication
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            // Add IdentityServer services
+            services.AddIdentityServer();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,6 +74,9 @@ namespace IdentityServer4Authentication
             app.UseStaticFiles();
 
             app.UseIdentity();
+
+            // Note that UseIdentityServer must come after UseIdentity in the pipeline
+            app.UseIdentityServer();
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 

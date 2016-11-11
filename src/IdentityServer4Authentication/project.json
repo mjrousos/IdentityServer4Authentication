@@ -39,7 +39,9 @@
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+
+    "IdentityServer4": "1.0.0-rc3"
   },
 
   "tools": {
