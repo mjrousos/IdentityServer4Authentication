@@ -13,6 +13,7 @@ using IdentityServer4Authentication.Data;
 using IdentityServer4Authentication.Models;
 using IdentityServer4Authentication.Services;
 using Microsoft.AspNetCore.Identity;
+using System.Reflection;
 
 namespace IdentityServer4Authentication
 {
@@ -48,7 +49,12 @@ namespace IdentityServer4Authentication
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
             // Add IdentityServer services
-            services.AddIdentityServer();
+            var thisAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+            services.AddIdentityServer()
+                .AddAspNetIdentity<ApplicationUser>()
+                .AddOperationalStore(builder =>
+                    builder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), options =>
+                        options.MigrationsAssembly(thisAssembly)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
