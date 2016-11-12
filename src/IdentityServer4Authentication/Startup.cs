@@ -58,6 +58,8 @@ namespace IdentityServer4Authentication
 
             var thisAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             services.AddIdentityServer()
+                // .AddTemporarySigningCredential() // Can be used for testing until a real cert is available
+                .AddSigningCredential(new X509Certificate2(Path.Combine(".", "certs", "IdentityServer4Auth.pfx")))
                 .AddAspNetIdentity<ApplicationUser>()
                 .AddOperationalStore(builder =>
                     builder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), options =>
