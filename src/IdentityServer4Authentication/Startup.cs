@@ -14,6 +14,10 @@ using IdentityServer4Authentication.Models;
 using IdentityServer4Authentication.Services;
 using Microsoft.AspNetCore.Identity;
 using System.Reflection;
+using IdentityServer4.Stores;
+using IdentityServer4Authentication.Stores;
+using System.Security.Cryptography.X509Certificates;
+using System.IO;
 
 namespace IdentityServer4Authentication
 {
@@ -49,6 +53,9 @@ namespace IdentityServer4Authentication
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
             // Add IdentityServer services
+            services.AddSingleton<IScopeStore, CustomScopeStore>();
+            services.AddSingleton<IClientStore, CustomClientStore>();
+
             var thisAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             services.AddIdentityServer()
                 .AddAspNetIdentity<ApplicationUser>()
