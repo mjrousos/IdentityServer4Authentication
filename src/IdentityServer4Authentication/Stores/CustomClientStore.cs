@@ -20,12 +20,12 @@ namespace IdentityServer4Authentication.Stores
                 AllowedScopes = new[]
                 {
                     "officeOwner",
+                    StandardScopes.Roles.Name,
 
                     // Allow these to be requested even though they don't do anything
                     StandardScopes.OpenId.Name,
                     StandardScopes.Email.Name,
                     StandardScopes.Profile.Name,
-                    StandardScopes.Roles.Name,
                 }
             }
         };
