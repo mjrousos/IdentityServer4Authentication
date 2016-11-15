@@ -15,7 +15,7 @@ namespace IdentityServer4Authentication.Stores
             // as a resource scope.
             //
             // Another option here (if roles are needed in access_tokens), would
-            // just be to create a new scope (or use already-existing custom one)
+            // be to create a new scope (or use an already-existing custom one)
             // and include `new ScopeClaim(JwtClaimTypes.Role)` in the Claims.
             var accessTokenRoles = StandardScopes.Roles;
             accessTokenRoles.Type = ScopeType.Resource;
