@@ -41,9 +41,9 @@
       "type": "build"
     },
 
-    "IdentityServer4": "1.0.0-rc3",
-    "IdentityServer4.AspNetIdentity": "1.0.0-rc3",
-    "IdentityServer4.EntityFramework": "1.0.0-rc2"
+    "IdentityServer4": "1.0.0-rc4-update1",
+    "IdentityServer4.AspNetIdentity": "1.0.0-rc4-update1",
+    "IdentityServer4.EntityFramework": "1.0.0-rc4-update1"
   },
 
   "tools": {

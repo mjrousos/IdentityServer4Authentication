@@ -1,64 +1,31 @@
-﻿using IdentityServer4.Models;
-using IdentityServer4.Stores;
+﻿using IdentityModel;
+using IdentityServer4.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IdentityServer4Authentication.Stores
 {
-    public class CustomScopeStore : IScopeStore
+    // http://docs.identityserver.io/en/release/configuration/resources.html
+    public static class MyApiResourceProvider
     {
-        public static IEnumerable<Scope> GetAllScopes()
+        // This API lists all protected resources that a user may request access to
+        // Resources can be either identity resources (information about the user's identity)
+        // or API resources (access to some API/data/etc.).
+        // In our simple sample, we use the OAuth2 password resource flow which is not meant
+        // to provide identity, so we will only support API resources.
+        public static IEnumerable<ApiResource> GetAllResources()
         {
-            // IdentityServer considers Roles an identity scope, so access_tokens
-            // won't include it. This modifies the standard scope to function
-            // as a resource scope.
-            //
-            // Another option here (if roles are needed in access_tokens), would
-            // be to create a new scope (or use an already-existing custom one)
-            // and include `new ScopeClaim(JwtClaimTypes.Role)` in the Claims.
-            var accessTokenRoles = StandardScopes.Roles;
-            accessTokenRoles.Type = ScopeType.Resource;
-
             return new[]
             {
-                // These aren't needed because IdentityServer won't include their
-                // claims in access tokens anyhow; they are considered ScopeType.Identity scopes,
-                // so the claims only apply to identity tokens.
-                //
-                // I still include them just so that requests including them don't fail.
-                StandardScopes.OpenId,
-                StandardScopes.Profile,
-                StandardScopes.Email,
-                
-                // Include our modified roles scope
-                accessTokenRoles,
-
-                // The custom 'officeOwner' scope will include claims
-                // related to accessing resources restricted by office number.
-                // Requesting the 'officeOwner' scope will cause access tokens
-                // to include the 'office' claim (if one exists).
-                new Scope
-                {
-                    Name = "officeOwner",
-                    DisplayName = "Office Owner",
-                    Type = ScopeType.Resource,
-
-                    Claims = new[] {
-                        new ScopeClaim("office")
-                    }
-                }
+                // Add a resource for some set of APIs that we may be protecting
+                // Note that the constructor will automatically create an allowed scope with
+                // name and claims equal to the resource's name and claims. If the resource
+                // has different scopes/levels of access, the scopes property can be set to
+                // list specific scopes included in this resource, instead.
+                new ApiResource(
+                    "myAPIs",                                       // Api resource name
+                    "My API Set #1",                                // Display name
+                    new[] { JwtClaimTypes.Name, JwtClaimTypes.Role, "office" }) // Claims to be included in access token
             };
-        }
-
-        public Task<IEnumerable<Scope>> FindScopesAsync(IEnumerable<string> scopeNames)
-        {
-            return Task.FromResult(GetAllScopes().Where(s => scopeNames.Contains(s.Name)));
-        }
-
-        public Task<IEnumerable<Scope>> GetScopesAsync(bool publicOnly = true)
-        {
-            return Task.FromResult(GetAllScopes());
-        }
+        }        
     }
 }

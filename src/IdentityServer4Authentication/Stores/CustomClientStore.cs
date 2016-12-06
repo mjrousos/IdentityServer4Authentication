@@ -17,15 +17,9 @@ namespace IdentityServer4Authentication.Stores
                 AccessTokenLifetime = 60 * 60 * 24,
                 AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                 RequireClientSecret = false,
-                AllowedScopes = new[]
+                AllowedScopes = 
                 {
-                    "officeOwner",
-                    StandardScopes.Roles.Name,
-
-                    // Allow these to be requested even though they don't do anything
-                    StandardScopes.OpenId.Name,
-                    StandardScopes.Email.Name,
-                    StandardScopes.Profile.Name,
+                    "myAPIs"
                 }
             }
         };
