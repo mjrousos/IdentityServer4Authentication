@@ -60,10 +60,7 @@ namespace IdentityServer4Authentication
                 // .AddTemporarySigningCredential() // Can be used for testing until a real cert is available
                 .AddSigningCredential(new X509Certificate2(Path.Combine(".", "certs", "IdentityServer4Auth.pfx")))
                 .AddInMemoryApiResources(MyApiResourceProvider.GetAllResources())
-                .AddAspNetIdentity<ApplicationUser>()
-                .AddOperationalStore(builder =>
-                    builder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), options =>
-                        options.MigrationsAssembly(thisAssembly)));
+                .AddAspNetIdentity<ApplicationUser>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
