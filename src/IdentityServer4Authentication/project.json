@@ -4,7 +4,7 @@
       "version": "1.0.1",
       "type": "platform"
     },
-    "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
+    "Microsoft.AspNetCore.Authentication.Cookies": "1.1.0",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0",
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
@@ -27,10 +27,10 @@
       "type": "build"
     },
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
-    "Microsoft.Extensions.Logging": "1.0.0",
+    "Microsoft.Extensions.Logging": "1.1.0",
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
-    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
     "Microsoft.VisualStudio.Web.CodeGeneration.Tools": {
       "version": "1.0.0-preview2-final",
@@ -41,9 +41,9 @@
       "type": "build"
     },
 
-    "IdentityServer4": "1.0.0-rc4-update1",
-    "IdentityServer4.AspNetIdentity": "1.0.0-rc4-update1",
-    "IdentityServer4.EntityFramework": "1.0.0-rc4-update1"
+    "IdentityServer4": "1.0.2",
+    "IdentityServer4.AspNetIdentity": "1.0.0",
+    "IdentityServer4.EntityFramework": "1.0.0"
   },
 
   "tools": {
