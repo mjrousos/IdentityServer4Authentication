@@ -57,7 +57,7 @@ namespace IdentityServer4Authentication
 
             services.AddIdentityServer()
                 // .AddTemporarySigningCredential() // Can be used for testing until a real cert is available
-                .AddSigningCredential(new X509Certificate2(Path.Combine(".", "certs", "IdentityServer4Auth.pfx")))
+                .AddSigningCredential(new X509Certificate2(Path.Combine("..", "..", "certs", "IdentityServer4Auth.pfx")))
                 .AddInMemoryApiResources(MyApiResourceProvider.GetAllResources())
                 .AddAspNetIdentity<ApplicationUser>();
         }
