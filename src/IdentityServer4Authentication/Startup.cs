@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -13,7 +10,6 @@ using IdentityServer4Authentication.Data;
 using IdentityServer4Authentication.Models;
 using IdentityServer4Authentication.Services;
 using Microsoft.AspNetCore.Identity;
-using System.Reflection;
 using IdentityServer4.Stores;
 using IdentityServer4Authentication.Stores;
 using System.Security.Cryptography.X509Certificates;
