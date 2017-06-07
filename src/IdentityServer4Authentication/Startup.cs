@@ -82,6 +82,10 @@ namespace IdentityServer4Authentication
 
             app.UseIdentity();
 
+            // Using Identity implies cookie authentication.
+            // Cookie authentication can also be added explicitly if not using Identity
+            // app.UseCookieAuthentication();
+
             // Note that UseIdentityServer must come after UseIdentity in the pipeline
             app.UseIdentityServer();
 
