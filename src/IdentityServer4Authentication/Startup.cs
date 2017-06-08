@@ -8,7 +8,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using IdentityServer4Authentication.Data;
 using IdentityServer4Authentication.Models;
-using IdentityServer4Authentication.Services;
 using Microsoft.AspNetCore.Identity;
 using IdentityServer4.Stores;
 using IdentityServer4Authentication.Stores;
@@ -23,8 +22,7 @@ namespace IdentityServer4Authentication
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
             Configuration = builder.Build();
         }
@@ -43,11 +41,7 @@ namespace IdentityServer4Authentication
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
-
-            // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
-
+            
             // Add IdentityServer services
             services.AddSingleton<IClientStore, CustomClientStore>();
 
@@ -77,9 +71,7 @@ namespace IdentityServer4Authentication
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
-            app.UseStaticFiles();
-
+            
             app.UseIdentity();
 
             // Using Identity implies cookie authentication.
@@ -90,13 +82,11 @@ namespace IdentityServer4Authentication
             app.UseIdentityServer();
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
+            // External authentication middleware should come after app.UseIdentityServer (but before app.UseMvc) https://identityserver4.readthedocs.io/en/release/quickstarts/4_external_authentication.html
+            
+            app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvcWithDefaultRoute();
         }
 
         // Initialize some test roles. In the real world, these would be setup explicitly by a role manager
