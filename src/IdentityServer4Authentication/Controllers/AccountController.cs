@@ -46,8 +46,6 @@ namespace IdentityServer4Authentication.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
@@ -86,9 +84,13 @@ namespace IdentityServer4Authentication.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, OfficeNumber = model.OfficeNumber };
+
+                // Create the new user
                 var result = await _userManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
+                    // Here, UserManager is used to make role assignments
                     if (model.IsAdministrator)
                     {
                         await _userManager.AddToRoleAsync(user, "Administrator");
@@ -98,6 +100,7 @@ namespace IdentityServer4Authentication.Controllers
                         await _userManager.AddToRoleAsync(user, "Manager");
                     }
 
+                    // Add a custom claim for office number
                     var officeClaim = new Claim("office", user.OfficeNumber.ToString(), ClaimValueTypes.Integer);
                     await _userManager.AddClaimAsync(user, officeClaim);
 

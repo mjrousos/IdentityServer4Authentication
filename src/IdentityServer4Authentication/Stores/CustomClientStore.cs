@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace IdentityServer4Authentication.Stores
 {
+    /// <summary>
+    /// This class provides IdentityServer4 clients that may
+    /// request tokens.
+    /// </summary>
     public class CustomClientStore : IClientStore
     {
         public static IEnumerable<Client> AllClients { get; } = new[]

@@ -86,6 +86,7 @@ namespace IdentityServer4Authentication
             
             app.UseStaticFiles();
 
+            // Note that the UseMvc call must come after all authentication middleware (such as UseIdentity)
             app.UseMvcWithDefaultRoute();
         }
 

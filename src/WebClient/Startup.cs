@@ -44,6 +44,10 @@ namespace WebClient
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            // Information on how the security token should be validated. In more common cases
+            // (in which an Authority property is set for JwtBearerOptions, below), this may
+            // not be necessary since default token validation parameters will be used to validate
+            // the token with the authority.
             var certLocation = Path.Combine("..", "..", "certs", "IdentityServer4Auth.cer");
             var tokenValidationParameters = new TokenValidationParameters
             {
@@ -65,6 +69,7 @@ namespace WebClient
                 TokenValidationParameters = tokenValidationParameters
             });
 
+            // .UseMvc must come after authentication middleware
             app.UseMvc();
         }
     }
