@@ -4,7 +4,7 @@ ASP.NET Core Authentication and Authorization Sample
 Overview
 --------
 
-This sample demonstrates a simple authentication and authorization scenario in ASP.NET Core using JWT bearer tokens. The code is the same as descrbied in the blog posts [ASP.NET Core Authentication with IdentityServer4](https://blogs.msdn.microsoft.com/webdev/2017/01/23/asp-net-core-authentication-with-identityserver4/) and [JWT Validation and Authorization in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2017/04/06/jwt-validation-and-authorization-in-asp-net-core/).
+This sample demonstrates a simple authentication and authorization scenario in ASP.NET Core using JWT bearer tokens. The code is the same as described in the blog posts [ASP.NET Core Authentication with IdentityServer4](https://blogs.msdn.microsoft.com/webdev/2017/01/23/asp-net-core-authentication-with-identityserver4/) and [JWT Validation and Authorization in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2017/04/06/jwt-validation-and-authorization-in-asp-net-core/).
 
 The IdentityServer4Authentication project contains a simple MVC app that allows users to register or login (using ASP.NET Core Identity). It then uses [IdentityServer4](http://docs.identityserver.io/en/release/) to set up a JWT-based authentication service using a basic [OAuth2.0 resource-owner password flow](https://tools.ietf.org/html/rfc6749#section-1.3.3).
 
